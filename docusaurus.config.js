@@ -41,13 +41,13 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        // docs: {
+        //   sidebarPath: './sidebars.js',
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+        // },
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -78,7 +78,17 @@ const config = {
         path: 'demo',
         routeBasePath: 'demo',
         sidebarPath: require.resolve('./sidebarsDemo.js'),
-        // ... other options
+        // includeCurrentVersion: false
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tutorial',
+        path: 'tutorial',
+        routeBasePath: 'tutorial',
+        sidebarPath: require.resolve('./sidebarsTutorial.js'),
+        // includeCurrentVersion: false
       },
     ],
   ],
@@ -95,23 +105,38 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'tutorialSidebar',
+          //   position: 'left',
+          //   label: 'Tutorial',
+          // },
+          // {
+          //   to: '/blog', label: 'Blog', position: 'left'
+          // },
           {
             to: '/demo/intro',
             position: 'left',
             label: 'Demo',
             activeBaseRegex: `/demo/`,
-        },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            to: '/tutorial/intro',
+            position: 'left',
+            label: 'Tutorial',
+            activeBaseRegex: `/tutorial/`,
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'demo',
             position: 'right',
+            className: 'aaa'
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'tutorial',
+            position: 'right',
+            className: 'aaa'
           },
         ],
       },
