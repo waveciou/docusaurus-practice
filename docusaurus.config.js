@@ -118,25 +118,25 @@ const config = {
             to: '/demo/intro',
             position: 'left',
             label: 'Demo',
-            activeBaseRegex: `/demo/`,
+            activeBaseRegex: '/demo/',
           },
           {
             to: '/tutorial/intro',
             position: 'left',
             label: 'Tutorial',
-            activeBaseRegex: `/tutorial/`,
+            activeBaseRegex: '/tutorial/'
           },
           {
             type: 'docsVersionDropdown',
             docsPluginId: 'demo',
             position: 'right',
-            className: 'aaa'
+            className: 'version-dropdown-button',
           },
           {
             type: 'docsVersionDropdown',
             docsPluginId: 'tutorial',
             position: 'right',
-            className: 'aaa'
+            className: 'version-dropdown-button',
           },
         ],
       },
