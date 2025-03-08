@@ -1,0 +1,38 @@
+.section {
+  padding: 30px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-pagination-nav-border-radius);
+  text-align: center;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  padding: 0;
+  margin: 0 10px;
+  line-height: 1.5em;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  transform: translateZ(0);
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.button:hover {
+  color: var(--ifm-color-primary);
+}
