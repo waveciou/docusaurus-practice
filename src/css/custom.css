@@ -29,16 +29,26 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-.navbar__item.dropdown {
-  padding: 0px;
-}
+/* 把 .version-dropdown-item 都隱藏起來，有 active 的才顯示 */
 
-.navbar .version-dropdown-button {
+.navbar__item.version-dropdown-item {
   display: none;
-  padding: var(--ifm-navbar-item-padding-vertical)
-      var(--ifm-navbar-item-padding-horizontal);
 }
 
-.navbar .version-dropdown-button.active {
+.navbar__item.version-dropdown-item.active {
+  display: block;
+}
+
+@media (max-width: 996px) {
+  .navbar__item.version-dropdown-item.active {
+    display: none;
+  }
+}
+
+.menu__list-item.version-dropdown-item {
+  display: none;
+}
+
+.menu__list-item.version-dropdown-item.active {
   display: block;
 }
