@@ -9,6 +9,8 @@ import {isSamePath, useLocalPathname} from '@docusaurus/theme-common/internal';
 import NavbarNavLink from '@theme/NavbarItem/NavbarNavLink';
 import NavbarItem from '@theme/NavbarItem';
 import styles from './styles.module.css';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+
 function isItemActive(item, localPathname) {
   if (isSamePath(item.to, localPathname)) {
     return true;
@@ -33,8 +35,16 @@ function DropdownNavbarItemDesktop({
 }) {
   const dropdownRef = useRef(null);
   const [showDropdown, setShowDropdown] = useState(false);
+
+  // We need to get the current locale to build the correct active link
   const localPathname = useLocalPathname();
-  const containsActive = containsActiveItems(items, localPathname);
+  const { i18n: { currentLocale } } = useDocusaurusContext();
+
+  const navbarItemActive = (() => {
+    const locale = currentLocale === 'en' ? '' : `/${currentLocale}`;
+    return containsActiveItems(items, `${locale}${localPathname}`);
+  })();
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!dropdownRef.current || dropdownRef.current.contains(event.target)) {
@@ -51,6 +61,7 @@ function DropdownNavbarItemDesktop({
       document.removeEventListener('focusin', handleClickOutside);
     };
   }, [dropdownRef]);
+
   return (
     <div
       ref={dropdownRef}
@@ -58,7 +69,7 @@ function DropdownNavbarItemDesktop({
         'dropdown--right': position === 'right',
         'dropdown--show': showDropdown,
         'version-dropdown-item': (className || '').includes('version-dropdown-button'),
-        'active': containsActive,
+        'active': navbarItemActive,
       })}>
       <NavbarNavLink
         aria-haspopup="true"
@@ -104,6 +115,15 @@ function DropdownNavbarItemMobile({
   const {collapsed, toggleCollapsed, setCollapsed} = useCollapsible({
     initialState: () => !containsActive,
   });
+
+  // We need to get the current locale to build the correct active link
+  const { i18n: { currentLocale } } = useDocusaurusContext();
+
+  const navbarItemActive = (() => {
+    const locale = currentLocale === 'en' ? '' : `/${currentLocale}`;
+    return containsActiveItems(items, `${locale}${localPathname}`);
+  })();
+
   // Expand/collapse if any item active after a navigation
   useEffect(() => {
     if (containsActive) {
@@ -115,7 +135,7 @@ function DropdownNavbarItemMobile({
       className={clsx('menu__list-item', {
         'menu__list-item--collapsed': collapsed,
         'version-dropdown-item': (className || '').includes('version-dropdown-button'),
-        'active': containsActive,
+        'active': navbarItemActive,
       })}>
       <NavbarNavLink
         role="button"

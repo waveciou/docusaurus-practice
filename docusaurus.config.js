@@ -33,7 +33,15 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh-tw'],
+    localeConfigs: {
+      en: {
+        htmlLang: 'en',
+      },
+      'zh-tw': {
+        htmlLang: 'zh-tw',
+      },
+    },
   },
 
   presets: [
@@ -137,6 +145,10 @@ const config = {
             docsPluginId: 'tutorial',
             position: 'right',
             className: 'version-dropdown-button',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
         ],
       },
