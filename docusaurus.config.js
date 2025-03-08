@@ -78,7 +78,7 @@ const config = {
         path: 'demo',
         routeBasePath: 'demo',
         sidebarPath: require.resolve('./sidebarsDemo.js'),
-        // includeCurrentVersion: false
+        // includeCurrentVersion: false // 資料庫不包含最新的版本
       },
     ],
     [
@@ -88,7 +88,7 @@ const config = {
         path: 'tutorial',
         routeBasePath: 'tutorial',
         sidebarPath: require.resolve('./sidebarsTutorial.js'),
-        // includeCurrentVersion: false
+        // includeCurrentVersion: false // 資料庫不包含最新的版本
       },
     ],
   ],
