@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "2.0.0",
+    "description": "The label for version 2.0.0"
+  },
+  "sidebar.demoSidebars.category.Demo - Basics": {
+    "message": "[中文] Demo - Basics",
+    "description": "The label for category Demo - Basics in sidebar demoSidebars"
+  },
+  "sidebar.demoSidebars.category.Demo - Basics.link.generated-index.description": {
+    "message": "[中文] 5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Demo - Basics in sidebar demoSidebars"
+  },
+  "sidebar.demoSidebars.category.Demo - Extras": {
+    "message": "[中文] Demo - Extras",
+    "description": "The label for category Demo - Extras in sidebar demoSidebars"
+  }
+}
