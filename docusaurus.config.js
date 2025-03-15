@@ -6,6 +6,36 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+import path from "path";
+import fs from "fs";
+
+const generateOpenApiPlugins = () => {
+  const openapiDir = path.resolve(__dirname, 'src/api');
+  const openapiFiles = fs.readdirSync(openapiDir).filter(file => file.endsWith('.yml'));
+
+  const config = openapiFiles.reduce((data, file) => {
+    const id = path.basename(file, '.yml');
+    data[id] = {
+      specPath: path.join(openapiDir, file),
+      outputDir: `api-doc/${id}`,
+      sidebarOptions: {
+        groupPathsBy: 'tag',
+      }
+    }
+    return data;
+  }, {});
+
+  const result = [
+    'docusaurus-plugin-openapi-docs',
+    {
+      id: 'api-doc',
+      docsPluginId: 'classic',
+      config,
+    },
+  ];
+  return result;
+};
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
@@ -109,29 +139,30 @@ const config = {
         docItemComponent: "@theme/ApiItem" // 使用 theme-openapi-docs 的樣式
       },
     ],
-    [
-      'docusaurus-plugin-openapi-docs',
-      {
-        id: "api-doc",
-        docsPluginId: "classic",
-        config: {
-          member: {
-            specPath: "src/api/member.yml",
-            outputDir: "api-doc/member",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          product: {
-            specPath: "src/api/product.yml",
-            outputDir: "api-doc/product",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-        }
-      },
-    ]
+    generateOpenApiPlugins(),
+    // [
+    //   'docusaurus-plugin-openapi-docs',
+    //   {
+    //     id: "api-doc",
+    //     docsPluginId: "classic",
+    //     config: {
+    //       member: {
+    //         specPath: "src/api/member.yml",
+    //         outputDir: "api-doc/member",
+    //         sidebarOptions: {
+    //           groupPathsBy: "tag",
+    //         },
+    //       },
+    //       product: {
+    //         specPath: "src/api/product.yml",
+    //         outputDir: "api-doc/product",
+    //         sidebarOptions: {
+    //           groupPathsBy: "tag",
+    //         },
+    //       },
+    //     }
+    //   },
+    // ]
   ],
 
   themeConfig:
