@@ -99,6 +99,39 @@ const config = {
         // includeCurrentVersion: false // 資料庫不包含最新的版本
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api-doc',
+        path: 'api-doc',
+        routeBasePath: 'api-doc',
+        sidebarPath: require.resolve('./sidebarsApiDoc.js'),
+        docItemComponent: "@theme/ApiItem" // 使用 theme-openapi-docs 的樣式
+      },
+    ],
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "api-doc",
+        docsPluginId: "classic",
+        config: {
+          member: {
+            specPath: "src/api/member.yml",
+            outputDir: "api-doc/member",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+            },
+          },
+          product: {
+            specPath: "src/api/product.yml",
+            outputDir: "api-doc/product",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+            },
+          },
+        }
+      },
+    ]
   ],
 
   themeConfig:
@@ -133,6 +166,12 @@ const config = {
             position: 'left',
             label: 'Tutorial',
             activeBaseRegex: '/tutorial/'
+          },
+          {
+            to: '/api-doc/member/user-management-api',
+            position: 'left',
+            label: 'API',
+            activeBaseRegex: `/api-doc/`,
           },
           {
             type: 'docsVersionDropdown',
@@ -204,6 +243,7 @@ const config = {
     }),
 
     themes: [
+      'docusaurus-theme-openapi-docs',
       [
         '@easyops-cn/docusaurus-search-local',
         {
