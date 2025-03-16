@@ -13,7 +13,8 @@ import DocBreadcrumbs from '@theme/DocBreadcrumbs';
 import ContentVisibility from '@theme/ContentVisibility';
 import styles from './styles.module.css';
 
-import FeedbackWidget from '@site/src/components/FeedbackWidget';
+import Giscus from "@giscus/react";
+import { useColorMode } from "@docusaurus/theme-common";
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -37,6 +38,7 @@ function useDocTOC() {
 export default function DocItemLayout({children}) {
   const docTOC = useDocTOC();
   const {metadata} = useDoc();
+  const { colorMode } = useColorMode();
   return (
     <div className="row">
       <div className={clsx('col', !docTOC.hidden && styles.docItemCol)}>
@@ -50,8 +52,21 @@ export default function DocItemLayout({children}) {
             <DocItemContent>{children}</DocItemContent>
             <DocItemFooter />
           </article>
-          <FeedbackWidget />
           <DocItemPaginator />
+          <Giscus
+            id='comments'
+            repo='waveciou/docusaurus-practice'
+            repoId='R_kgDON_KDDA'
+            category='Announcements'
+            categoryId='DIC_kwDON_KDDM4CoF5k'
+            mapping='url'
+            reactionsEnabled='1'
+            emitMetadata='0'
+            inputPosition='top'
+            theme={colorMode}
+            lang='zh-TW'
+            loading='lazy'
+          />
         </div>
       </div>
       {docTOC.desktop && <div className="col col--3">{docTOC.desktop}</div>}
