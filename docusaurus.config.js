@@ -9,6 +9,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import path from "path";
 import fs from "fs";
 
+import tailwindPlugin from "./src/plugins/tailwind-config.cjs";
+
 const generateOpenApiPlugins = () => {
   const openapiDir = path.resolve(__dirname, 'src/api');
   const openapiFiles = fs.readdirSync(openapiDir).filter(file => file.endsWith('.yml'));
@@ -163,6 +165,7 @@ const config = {
     //     }
     //   },
     // ]
+    tailwindPlugin
   ],
 
   themeConfig:
